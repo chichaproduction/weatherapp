@@ -1,8 +1,10 @@
+import { weatherDataBuilder } from "./weatherDataBuilder.js"
+
 //Main function
 async function main(){
-    let weatherdata = await getWeatherData();                                        //waits the Promise resolves or rejects
-    
-
+    let weatherapidata = await getWeatherData();                                        //waits the Promise resolves or rejects
+    let weatherdata = weatherDataBuilder(weatherapidata.current, weatherapidata.current_units);
+    console.log(weatherdata);
 }
 
 //Get weather Data 
@@ -60,10 +62,6 @@ async function getForecast(latitude, longitude){
     let resdata = await res.json();
     return resdata;
 }
-
-
-
-
 
 //Initial
 main();
