@@ -13,34 +13,102 @@
         .row {
             display: flex;
             flex-wrap: wrap;
-            gap: var(--gap, 10px);
+            /* gap: var(--gap, 10px); */
         }
 
 
     /* COLUMN */
-        .col-1 { flex: 0 0 8.333%; }
-        .col-2 { flex: 0 0 16.666%; }
-        .col-3 { flex: 0 0 25%; }
-        .col-4 { flex: 0 0 33.333%; }
-        .col-5 { flex: 0 0 41.666%; }
-        .col-6 { flex: 0 0 50%; }
-        .col-7 { flex: 0 0 58.333%; }
-        .col-8 { flex: 0 0 66.666%; }
-        .col-9 { flex: 0 0 75%; }
-        .col-10 { flex: 0 0 83.333%; }
-        .col-11 { flex: 0 0 91.666%; }
-        .col-12 { flex: 0 0 100%; }
+    .col-1  { 
+        flex: 0 1 8.333%; 
+        min-width: 0;               /* removes the default that blocks shrinking below content size */
+        overflow-wrap: break-word;  /* lets long text wrap onto multiple lines instead of forcing width */
+    }
+    .col-2  { 
+        flex: 0 1 16.666%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-3  { 
+        flex: 0 1 25%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-4  { 
+        flex: 0 1 33.333%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-5  { 
+        flex: 0 1 41.666%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-6  { 
+        flex: 0 1 50%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-7  { 
+        flex: 0 1 58.333%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-8  { 
+        flex: 0 1 66.666%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-9  { 
+        flex: 0 1 75%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-10 { 
+        flex: 0 1 83.333%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-11 { 
+        flex: 0 1 91.666%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
+    .col-12 { 
+        flex: 0 1 100%; 
+        min-width: 0;        
+        overflow-wrap: break-word;
+    }
 
+/* PAGE Setup */
+.page-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 /* DIV POSITIONS */
 .center-box {
+    flex: 1;
     display: flex;
     justify-content: center; /* horizontal centering */
     align-items: center;     /* vertical centering */
-    height: 100vh;           /* needs a height to center vertically within (100%viewport) */
 }
+
+/* DIV POSITIONS */
+.footer-box {
+    display: flex;
+    justify-content: end; /* horizontal end */
+    align-items: end;     /* vertical end */
+}
+
 
 /* TEXT POSITIONS */
 .text-center {text-align: center;}
 .text-left {text-align: left;}
 .text-left {text-align: right;}
+
+/* SVG */
+.info-main-icon {
+    height:20px;
+    width:20px;
+}

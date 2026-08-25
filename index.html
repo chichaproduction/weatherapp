@@ -9,20 +9,57 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/teststyles.css">
+    <link rel="stylesheet" href="css/animation.css">
 
     <!-- JS -->
     <script type="module" src="js/main.js"></script>
   </head>
 
   <body>
-        <!-- <div class="test-border" style="--border-thickness: 1px; --border-color: blue;">
-            THE WEATHER TODAY IS
-        </div> -->
-        <div class="row center-box">
-            <div class="col-12 text-center test-border" style="--border-thickness: 1px; --border-color: red;">
-               THE WEATHER TODAY IS
-           </div>
+    <!-- <div class="test-border" style="--border-thickness: 1px; --border-color: blue;">
+        THE WEATHER TODAY IS
+    </div> -->
+    <div class="page-wrapper">
+      <!-- CENTER -->
+      <div class="row center-box">
+          <div class="col-12 text-center test-border" style="--border-thickness: 1px; --border-color: red;">
+            <div class="row">
+              <div class="col-12 text-center test-border" style="--border-thickness: 1px; --border-color: blue;">
+                <h6>THE WEATHER TODAY IS</h6> 
+              </div>
+            </div>
+            <div class="tracking-in-contract">
+              <h1>SUNNY</h1>
+            </div>
+          </div>
+      </div>
+      <!-- FOOTER -->
+      <div class="row text-center footer-box test-border" style="--border-thickness: 1px; --border-color: red;">
+        <div class="col-2 test-border" style="--border-thickness: 1px; --border-color: purple;">
+          Temperature
         </div>
+        <div class="col-2 test-border" style="--border-thickness: 1px; --border-color: purple;">
+          <!-- Wind -->
+          <img class="info-main-icon" src="/resources/svg/wind.svg" alt="wind" />
+        </div>
+        <div class="col-2 test-border" style="--border-thickness: 1px; --border-color: purple;">
+          <!-- Atmosphere -->
+          <img class="info-main-icon" src="/resources/svg/wind.svg" alt="wind" />
+        </div>
+        <div class="col-2 test-border" style="--border-thickness: 1px; --border-color: purple;">
+          <!-- Precipitation -->
+          <img class="info-main-icon" src="/resources/svg/wind.svg" alt="wind" />
+        </div>
+        <div class="col-2 test-border" style="--border-thickness: 1px; --border-color: purple;">
+          <!-- Cloud -->
+          <img class="info-main-icon" src="/resources/svg/wind.svg" alt="wind" />
+        </div>
+        <!-- <div class="col-2 test-border" style="--border-thickness: 1px; --border-color: purple;">
+          Day -->
+        </div>
+      </div>
+      
+    </div>
   </body>
 </html>
 <!-- 
