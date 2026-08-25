@@ -1,5 +1,4 @@
 import { weatherDataBuilder } from "./weatherDataBuilder.js"
-
 //Main function
 async function main(){
     let weatherapidata = await getWeatherData();                                        //waits the Promise resolves or rejects

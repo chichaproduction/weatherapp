@@ -1,7 +1,5 @@
 import { weatherDefinitions} from "./weatherDefinitions.js"
 
-
-
 export function weatherDataBuilder(data, data_units) {
     let data_temp = {
         data_temp_str: {
@@ -25,15 +23,44 @@ export function weatherDataBuilder(data, data_units) {
         },
         data: data,
         data_units: data_units,
-        ui_data:{
+    }
+
+    let ui_data = {
             weather: getWeatherDefition("weather_codes", data.weather_code),
             is_day: getWeatherDefition("is_day", data.is_day),
             cloud_cover: getWeatherDefition("cloud_cover", data.cloud_cover),
-            wind_direction: getWeatherDefition("wind_direction", (Math.round(data.wind_direction_10m / 45) % 8)),
+            wind:{
+                wind_gust: data_temp.data_temp_str.wind_gusts_10m_str,
+                wind_speed: data_temp.data_temp_str.wind_speed_10m_str,
+                wind_direction: getWeatherDefition("wind_direction", (Math.round(data.wind_direction_10m / 45) % 8)),
+            },
+            atmosphere:{
+                humidity: data_temp.data_temp_str.relative_humidity_2m_str,
+                sea_level_pressure: data_temp.data_temp_str.pressure_msl_str,
+                surface_pressure: data_temp.data_temp_str.surface_pressure_str,
+            },
+            precipitation:{
+                /* 
+                    any form of water falling from the sky: it's the total, 
+                    combined measurement that includes rain, showers, snow, 
+                    and hail all added together into one number.
+                */
+                precipitation: data_temp.data_temp_str.precipitation_str, //total of everything below, combined
+                rain: data_temp.data_temp_str.rain_str, //just the rain (long rain)
+                showers: data_temp.data_temp_str.showers_str, //just the showers (short burst of rain)
+                snowfall: data_temp.data_temp_str.snowfall_str, //just the snowfall
+            },
+            temperature:{
+                air_temperature: data_temp.data_temp_str.temperature_2m_str,              // What it really is
+                feel_like_temperature: data_temp.data_temp_str.apparent_temperature_str,  // What it feels in your skin
+            },
         }
-    }
 
-    return data_temp;
+    let return_data = {
+        data_temp: data_temp,
+        ui_data: ui_data
+    }
+    return return_data;
 }
 
 function getWeatherDefition(data_list, data_param){
