@@ -6,7 +6,6 @@ export function weatherDataBuilder(data, data_units) {
             apparent_temperature_str:   data.apparent_temperature + " " + data_units.apparent_temperature,
             cloud_cover_str:            data.cloud_cover + " " + data_units.cloud_cover,
             interval_str:               data.interval + " " + data_units.interval,
-            is_day: 1,
             precipitation_str:          data.precipitation + " " + data_units.precipitation,
             pressure_msl_str:           data.pressure_msl + " " + data_units.pressure_msl,
             rain_str:                   data.rain + " " + data_units.rain,
@@ -25,8 +24,12 @@ export function weatherDataBuilder(data, data_units) {
         data_units: data_units,
     }
 
+
+    let weatherdefinition = getWeatherDefition("weather_codes", data.weather_code);
     let ui_data = {
-            weather: getWeatherDefition("weather_codes", data.weather_code),
+            weather: weatherdefinition.label,
+            weather_background: (data.is_day == 1) ? weatherdefinition.picstr : weatherdefinition.picstr_night,
+            weather_background_credit: (data.is_day == 1) ? weatherdefinition.piccredit : weatherdefinition.piccredit_night,
             is_day: getWeatherDefition("is_day", data.is_day),
             cloud_cover: getWeatherDefition("cloud_cover", data.cloud_cover),
             wind:{
