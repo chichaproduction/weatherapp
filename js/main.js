@@ -1,8 +1,11 @@
 import { weatherDataBuilder } from "./weatherDataBuilder.js"
+import { uiSetter } from "./uiBuilder.js"
 //Main function
 async function main(){
     let weatherapidata = await getWeatherData();                                        //waits the Promise resolves or rejects
     let weatherdata = weatherDataBuilder(weatherapidata.current, weatherapidata.current_units);
+    uiSetter(weatherdata);
+    
     console.log(weatherdata);
 }
 
