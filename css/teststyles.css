@@ -3,6 +3,5 @@
 
 .test-border {
     border: var(--border-thickness, 1px) solid var(--border-color, red);
-    border-radius: var(--radius, 0px);
 }
 
