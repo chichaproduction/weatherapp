@@ -5,12 +5,12 @@ import { locationDataBuilder } from "./locationDataBuilder.js"
 //Main function
 async function main(){
     let geolocation = await getLatLong();                                           //waits the Promise resolves or rejects
-    let weatherapidata = await getForecast(geolocation.latitude, geolocation.longitude);       
-    let locationapidata = await getLocationData(geolocation.latitude, geolocation.longitude);                         //waits the Promise resolves or rejects
+    let weatherapidata = await getForecast(geolocation.latitude, geolocation.longitude); 
+    let locationapidata = await getLocationData(geolocation.latitude, geolocation.longitude); //waits the Promise resolves or rejects
     let weatherdata = weatherDataBuilder(weatherapidata.current, weatherapidata.current_units);
     let locationdata = locationDataBuilder(locationapidata);
     uiSetter(weatherdata, locationdata);
-     console.log(locationdata);
+    console.log(locationdata);
     console.log(weatherdata);
 }
 
@@ -57,7 +57,8 @@ async function getForecast(latitude, longitude){
         `surface_pressure,` +
         `wind_speed_10m,` +
         `wind_direction_10m,` +
-        `wind_gusts_10m`;
+        `wind_gusts_10m` + 
+        `&timezone=auto`;
     
     let res = await fetch(strrequest);
     let resdata = await res.json();

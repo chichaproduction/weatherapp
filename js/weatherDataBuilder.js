@@ -52,6 +52,7 @@ export function weatherDataBuilder(data, data_units) {
                 rain: data_temp.data_temp_str.rain_str, //just the rain (long rain)
                 showers: data_temp.data_temp_str.showers_str, //just the showers (short burst of rain)
                 snowfall: data_temp.data_temp_str.snowfall_str, //just the snowfall
+                type: getPrecipitationType(data_temp.data_temp_str.rain, data_temp.data_temp_str.showers ,data_temp.data_temp_str.snowfall)
             },
             temperature:{
                 air_temperature: data_temp.data_temp_str.temperature_2m_str,              // What it really is
@@ -75,4 +76,38 @@ function getWeatherDefition(data_list, data_param){
     });
       console.log(return_value);
     return return_value;
+}
+
+function getPrecipitationType(rain, showers, snow){
+    let type = null;
+
+    let hasRain = rain > 0;
+    let hasShower = showers > 0;
+    let hasSnow = snow > 0;
+
+
+// 1. Triple Mix
+    if (hasShower && hasSnow && hasRain) {
+        type = "Wintry Mix";
+    }else if (!hasShower && !hasSnow && !hasRain) {
+        type = "Dry"
+    }
+    // 2. Dual Mixes
+    else if (hasShower && hasSnow) {
+        type = "Snow Showers";
+    } else if (hasRain && hasSnow) {
+        type = "Rain & Snow";
+    } else if (hasRain && hasShower) {
+        type = "Rain Showers";
+    } 
+    // 3. Single Types
+    else if (hasSnow) {
+        type = "Snow";
+    } else if (hasShower) {
+        type = "Showers";
+    } else if (hasRain) {
+        type = "Rain";
+    }
+
+   return type;
 }
