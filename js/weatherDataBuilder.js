@@ -31,7 +31,7 @@ export function weatherDataBuilder(data, data_units) {
             weather_background: (data.is_day == 1) ? weatherdefinition.picstr : weatherdefinition.picstr_night,
             weather_background_credit: (data.is_day == 1) ? weatherdefinition.piccredit : weatherdefinition.piccredit_night,
             is_day: getWeatherDefition("is_day", data.is_day),
-            cloud_cover: getWeatherDefition("cloud_cover", data.cloud_cover),
+            cloud_cover: getCloudDefinition(data.cloud_cover),
             wind:{
                 wind_gust: data_temp.data_temp_str.wind_gusts_10m_str,
                 wind_speed: data_temp.data_temp_str.wind_speed_10m_str,
@@ -76,6 +76,22 @@ function getWeatherDefition(data_list, data_param){
     });
       console.log(return_value);
     return return_value;
+}
+
+function getCloudDefinition(cover){
+if (cover >= 0 && cover <= 24) {
+        return "Virtually Clear";
+    } else if (cover >= 25 && cover <= 49) {
+        return "Mostly Clear";
+    } else if (cover >= 50 && cover <= 74) {
+        return "Partly Clear";
+    } else if (cover >= 75 && cover <= 99) {
+        return "Mostly Clear";
+    } else if (cover >= 100) {
+        return "Completely Clear";
+    }
+    
+    return null;
 }
 
 function getPrecipitationType(rain, showers, snow){
