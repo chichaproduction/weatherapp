@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HTML 5 Boilerplate</title>
+    <title>WeatherApp</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
@@ -16,11 +16,7 @@
   </head>
 
   <body>
-    <!-- <div class="test-border" style="--border-thickness: 1px; --border-color: blue;">
-        THE WEATHER TODAY IS
-    </div> -->
     <div id="weather-bg">
-  
     </div>
     <div class="page-wrapper">
       <!-- CENTER -->
@@ -31,134 +27,149 @@
               THE WEATHER TODAY IS 
             </div>
           </div>
-          <div id="maintext" class="tracking-in-contract hero10">
-            
-          </div>
+          <div id="maintext" class="tracking-in-contract hero10"></div>
         </div>
       </div>
       <!-- FOOTER -->
-      <div class="row text-center footer-box test-border text-backdrop" style="--border-thickness: 1px; --border-color: pink;">
-        <div class="info-box test-border" style="--border-thickness: 1px; --border-color: red;">
-          <!-- Temperature -->
-          <div class="row test-border" style="--border-thickness: 1px; --border-color: green;"> 
+      <div class="row text-center footer-box">
+        <div class="info-box text-backdrop-card">
+          <!-- Day -->
+          <div class="row">
             <div class="col-12">
               <div class="row"> 
-                <div class="col-12 test-border" style="--border-thickness: 1px; --border-color: blue;">
-                  <img id="icon-temp" class="info-main-icon test-border" src="/resources/svg/temperature.svg" alt="wind" style="--border-thickness: 1px; --border-color: blue;" />
+                <div class="col-12">
+                  <img id="icon-day" class="info-main-icon">
                 </div>
               </div>
               <div class="row"> 
-                <div class="col-6 test-border" style="--border-thickness: 1px; --border-color: blue;">
+                <div id="current-time" class="col-12" style="font-size: 30px;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="info-box text-backdrop-card">
+          <!-- Temperature -->
+          <div class="row">
+            <div class="col-12">
+              <div class="row"> 
+                <div class="col-12">
+                  <img id="icon-temp" class="info-main-icon" src="/resources/svg/temperature.svg" alt="wind"/>
+                </div>
+              </div>
+              <div class="row"> 
+                <div class="col-6">
                   Temp.:
                 </div>
-                <div id="temp-real" class="col-6 test-border" style="--border-thickness: 1px; --border-color: blue;"></div>
+                <div id="temp-real" class="col-6"></div>
               </div>
               <div class="row"> 
-                <div class="col-6 test-border" style="--border-thickness: 1px; --border-color: blue;">
+                <div class="col-6">
                   Feels like:
                 </div>
-                <div id="temp-feel" class="col-6 test-border" style="--border-thickness: 1px; --border-color: blue;"></div>
+                <div id="temp-feel" class="col-6"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="info-box test-border" style="--border-thickness: 1px; --border-color: red;">
+        <div class="info-box text-backdrop-card">
           <!-- Wind -->
-          <div class="row test-border" style="--border-thickness: 1px; --border-color: green;"> 
+          <div class="row">
             <div class="col-12">
               <div class="row"> 
-                <div class="col-12 test-border" style="--border-thickness: 1px; --border-color: blue;">
-                   <img id="icon-wind" class="info-main-icon test-border" src="/resources/svg/wind.svg" alt="wind" style="--border-thickness: 1px; --border-color: blue;" />
+                <div class="col-12">
+                   <img id="icon-wind" class="info-main-icon" src="/resources/svg/wind.svg" alt="wind"/>
                 </div>
               </div>
               <div class="row"> 
-                <div class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;">
+                <div class="col-6">
                   Direction:
                 </div>
-                <div id="wind-dir" class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;"></div>
+                <div id="wind-dir" class="col-6"></div>
               </div>
               <div class="row"> 
-                <div class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;">
-                  Wind Gust:
+                <div class="col-6">
+                  W. Gust:
                 </div>
-                <div id="wind-gust" class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;"></div>
+                <div id="wind-gust" class="col-6"></div>
               </div>
               <div class="row"> 
-                <div class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;">
-                  Wind Speed:
+                <div class="col-6">
+                  W. Speed:
                 </div>
-                <div id="wind-speed" class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;"></div>
+                <div id="wind-speed" class="col-6"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="info-box test-border" style="--border-thickness: 1px; --border-color: red;">
+        <div class="info-box text-backdrop-card">
           <!-- Atmosphere -->
-          <div class="row test-border" style="--border-thickness: 1px; --border-color: green;"> 
+          <div class="row">
             <div class="col-12">
               <div class="row"> 
-                <div class="col-12 test-border" style="--border-thickness: 1px; --border-color: blue;">
-                  <img id="icon-atmos" class="info-main-icon test-border" src="/resources/svg/atmosphere.svg" alt="wind" style="--border-thickness: 1px; --border-color: blue;" />
+                <div class="col-12">
+                  <img id="icon-atmos" class="info-main-icon" src="/resources/svg/atmosphere.svg" alt="wind"/>
                 </div>
               </div>
               <div class="row"> 
-                <div class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;">
+                <div class="col-6">
                   Humidtiy:
                 </div>
-                <div id="humidity" class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;"></div>
+                <div id="humidity" class="col-6"></div>
               </div>
               <div class="row"> 
-                <div class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;">
+                <div class="col-6">
                   Sea Level:
                 </div>
-                <div id="sea-pressure" class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;"></div>
+                <div id="sea-pressure" class="col-6"></div>
               </div>
               <div class="row"> 
-                <div class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;">
+                <div class="col-6">
                   Surface:
                 </div>
-                <div id="surface-pressure" class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;"></div>
+                <div id="surface-pressure" class="col-6"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="info-box test-border" style="--border-thickness: 1px; --border-color: red;">
+        <div class="info-box text-backdrop-card">
           <!-- Precipitation -->
-          <div class="row test-border" style="--border-thickness: 1px; --border-color: green;"> 
+          <div class="row">
             <div class="col-12">
               <div class="row"> 
-                <div class="col-12 test-border" style="--border-thickness: 1px; --border-color: blue;">
-                  <img id="icon-atmos" class="info-main-icon test-border" src="/resources/svg/precipitation.svg" alt="wind" style="--border-thickness: 1px; --border-color: blue;" />
+                <div class="col-12">
+                  <img id="icon-atmos" class="info-main-icon" src="/resources/svg/precipitation.svg" alt="wind"/>
                 </div>
               </div>
               <div class="row"> 
-                <div id="precipitation-type" class="col-12 test-border" style="--border-thickness: 1px; --border-color: pink;"></div>
+                <div id="precipitation-type" class="col-12"></div>
               </div>
               <div class="row"> 
-                <div id="precipitation"  class="col-12 test-border" style="--border-thickness: 1px; --border-color: pink;"></div>
+                <div id="precipitation"  class="col-12"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="info-box test-border" style="--border-thickness: 1px; --border-color: red;">
+        <div class="info-box text-backdrop-card">
           <!-- Cloud -->
-          <div class="row test-border" style="--border-thickness: 1px; --border-color: green;"> 
+          <div class="row">
             <div class="col-12">
               <div class="row"> 
-                <div class="col-12 test-border" style="--border-thickness: 1px; --border-color: blue;">
-                   <img id="icon-cloud" class="info-main-icon test-border" src="/resources/svg/cloud-svgrepo-com.svg" alt="wind" style="--border-thickness: 1px; --border-color: blue;" />
+                <div class="col-12">
+                   <img id="icon-cloud" class="info-main-icon" src="/resources/svg/cloud-svgrepo-com.svg" alt="wind"/>
                 </div>
               </div>
               <div class="row"> 
-                <div class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;">
+                <div class="col-12">
                   Cloud Cover:
                 </div>
-                <div id="cloud-cover" class="col-6 test-border" style="--border-thickness: 1px; --border-color: pink;"></div>
+              </div>
+              <div class="row"> 
+                <div id="cloud-cover" class="col-12"></div>
               </div>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   </body>
