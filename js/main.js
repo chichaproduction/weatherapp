@@ -1,5 +1,6 @@
 import { weatherDataBuilder } from "./weatherDataBuilder.js"
 import { uiSetter } from "./uiBuilder.js"
+import { updateCurrentTime } from "./uiBuilder.js"
 import { locationDataBuilder } from "./locationDataBuilder.js"
 
 //Main function
@@ -16,7 +17,6 @@ async function main(){
 
 //Get Latitude and Longitude from Browser/Client
 function getLatLong(){
-
     return new Promise((resolve, reject)=>{
         navigator.geolocation.getCurrentPosition(
             //navigator can give browser info
@@ -24,9 +24,11 @@ function getLatLong(){
                 resolve({                                                           //call resolve to resolve promise
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
+                    
                 })
             },
-            error => {                                                              //anon func. if error callback is called
+            error => {                     
+                                                     //anon func. if error callback is called
                 console.log("Location permission denied or unavailable.");
                 reject(error)                                                       //call error to reject promise
             }
@@ -39,7 +41,7 @@ function getLatLong(){
 
 //Request to the API OPENMATEO
 async function getForecast(latitude, longitude){
-    
+
     let strrequest = await `https://api.open-meteo.com/v1/forecast?`+
     `latitude=${latitude}&longitude=${longitude}`+
     `&hourly=temperature_2m` + 
@@ -78,5 +80,9 @@ async function getLocationData(latitude, longitude){
     return resdata;
 }
 
+
+
 //Initial
+updateCurrentTime();
+setInterval(updateCurrentTime, 1000);
 main();
