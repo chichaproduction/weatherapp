@@ -74,7 +74,7 @@ function getWeatherDefition(data_list, data_param){
             return_value = value;
         }
     });
-      console.log(return_value);
+    //   console.log(return_value);
     return return_value;
 }
 

@@ -1,5 +1,5 @@
 export function locationDataBuilder(data) {
-    console.log(data);
+    // console.log(data);
     let return_data = {
         city: data.city,
         province: data.localityInfo.administrative[2].name,

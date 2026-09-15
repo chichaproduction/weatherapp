@@ -51,11 +51,6 @@ export function uiSetter(weatherdata, locationdata) {
     // weather_background_creit
 
     iconday.src = (weatherdata.data_temp.data.is_day == 0) ? night : day;
-
-
-    
-    console.log("im here in builder");
-    console.log(weatherdata);
 }
 
 
