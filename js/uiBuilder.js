@@ -5,7 +5,7 @@ export function uiSetter(weatherdata, locationdata) {
     let locationtext = document.getElementById("locationtext")
     let iconday = document.getElementById("icon-day");    
     let weatherbg = document.getElementById("weather-bg");    
-    // let weatherbgcredit = document.getElementById("weather-bg-credit");
+    let weatherbgcredit = document.getElementById("bg-credit");
     let tempreal = document.getElementById("temp-real");  
     let tempfeel = document.getElementById("temp-feel");  
     let winddirection = document.getElementById("wind-dir");  
@@ -46,7 +46,7 @@ export function uiSetter(weatherdata, locationdata) {
     let night = "/resources/svg/night.svg"
 
     weatherbg.style.backgroundImage = `url("../resources/bg/${weatherdata.ui_data.weather_background}.jpg")`;
-    // weatherbgcredit.textContent = weatherdata.ui_data.weather_background_credit
+    weatherbgcredit.textContent = weatherdata.ui_data.weather_background_credit
 
     // weather_background_creit
 

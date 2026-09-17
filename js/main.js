@@ -177,9 +177,20 @@ document.getElementById('search-location').addEventListener('click', () => {
     document.getElementById('myModal').style.display = 'flex';
     clearmodalsuggestion();
 });
+
+//Modal functionality
+document.getElementById('about-dev').addEventListener('click', () => {
+    document.getElementById('myAboutModal').style.display = 'flex';
+});
+
 document.getElementById('modal-close').addEventListener('click', () => {
     closemodal();
 });
+document.getElementById('modal-close-about').addEventListener('click', () => {
+    document.getElementById('myAboutModal').style.display = 'none';
+});
+
+
 //Search Button
 document.getElementById('search-button').addEventListener('click', async () => {
     let searchLocData = await searchLocation();
