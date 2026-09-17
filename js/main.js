@@ -3,9 +3,12 @@ import { uiSetter } from "./uiBuilder.js"
 import { updateCurrentTime } from "./uiBuilder.js"
 import { locationDataBuilder } from "./locationDataBuilder.js"
 
+let locations = [];
+let currentLocation = null;
+
 //Main function
 async function main(geolocation){
-
+    currentLocation = geolocation;
     if(!geolocation){
         geolocation = await getLatLong();                                        //waits the Promise resolves or rejects
     }
@@ -163,14 +166,16 @@ function closemodal(){
     clearmodalsuggestion();
 }
 
-
+function reloadmain(){
+    main(currentLocation);
+    console.log("UPDATE SUCCESFUL");
+}
 
 //Initial
 updateCurrentTime();
 setInterval(updateCurrentTime, 1000);
 main(false);
-let locations = [];
-
+setInterval(() => reloadmain(), 20 * 60 * 1000);// 20 minutes reload 
 
 //Modal functionality
 document.getElementById('search-location').addEventListener('click', () => {
@@ -209,5 +214,3 @@ document.getElementById('search-button').addEventListener('click', async () => {
     }
 });
 
-
-// setInterval(main, 20 * 60 * 1000); // 20 minutes, matching your earlier plan

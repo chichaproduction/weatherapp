@@ -71,12 +71,6 @@ No build step, no `npm install`, no environment variables required.
 - Click the search icon to look up weather for a different location by name.
 - Weather data refreshes automatically; a manual refresh is not currently required but may be added.
 
-## Roadmap / Possible Future Additions
-
-- Adaptive refresh interval based on current conditions (more frequent updates during active storms)
-- Hourly/multi-day forecast view
-- Pressure trend indicator (rising/falling) rather than raw hPa value
-
 ## Credits
 
 - Weather data: [Open-Meteo](https://open-meteo.com/)
@@ -86,7 +80,8 @@ No build step, no `npm install`, no environment variables required.
 ## Author
 
 Built by **chichaproduction**
-[GitHub](https://github.com/chichaproduction) · [LinkedIn](#https://www.linkedin.com/in/chichaproduction/)
+[GitHub](https://github.com/chichaproduction) · [LinkedIn](https://www.linkedin.com/in/chichaproduction/)
 
 ## License
-Specify a license here (e.g., MIT) if you intend for others to reuse this code.
+
+This project is licensed under the [MIT License](LICENSE).
