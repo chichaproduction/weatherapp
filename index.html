@@ -14,14 +14,19 @@
 
     <!-- JS -->
     <script type="module" src="js/main.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/resources/icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   </head>
 
   <body>
     <div id="weather-bg">
     </div>
     <div class="page-wrapper">
-      <div>
+      <div style="color: white;">
         <img id="about-dev" class="about-dev" src="/resources/svg/info.svg" alt="searchloc"/>
+        <img id="install-btn" class="dl-site" src="/resources/svg/dl.svg"  alt="download"/>
       </div>
       <!-- CENTER -->
       <div class="row center-box">
@@ -61,7 +66,7 @@
             <div class="col-12">
               <div class="row"> 
                 <div class="col-12">
-                  <img id="icon-temp" class="info-main-icon" src="/resources/svg/temperature.svg" alt="wind"/>
+                  <img id="icon-temp" class="info-main-icon" src="/resources/svg/temperature.svg" alt="temp"/>
                 </div>
               </div>
               <div class="row"> 
@@ -115,12 +120,12 @@
             <div class="col-12">
               <div class="row"> 
                 <div class="col-12">
-                  <img id="icon-atmos" class="info-main-icon" src="/resources/svg/atmosphere.svg" alt="wind"/>
+                  <img id="icon-atmos" class="info-main-icon" src="/resources/svg/atmosphere.svg" alt="atmosphere"/>
                 </div>
               </div>
               <div class="row"> 
                 <div class="col-6">
-                  Humidtiy:
+                  Humidity:
                 </div>
                 <div id="humidity" class="col-6"></div>
               </div>
@@ -145,7 +150,7 @@
             <div class="col-12">
               <div class="row"> 
                 <div class="col-12">
-                  <img id="icon-atmos" class="info-main-icon" src="/resources/svg/precipitation.svg" alt="wind"/>
+                  <img id="icon-atmos" class="info-main-icon" src="/resources/svg/precipitation.svg" alt="precipitation"/>
                 </div>
               </div>
               <div class="row"> 
@@ -163,7 +168,7 @@
             <div class="col-12">
               <div class="row"> 
                 <div class="col-12">
-                   <img id="icon-cloud" class="info-main-icon" src="/resources/svg/cloud-svgrepo-com.svg" alt="wind"/>
+                   <img id="icon-cloud" class="info-main-icon" src="/resources/svg/cloud-svgrepo-com.svg" alt="cloud"/>
                 </div>
               </div>
               <div class="row"> 

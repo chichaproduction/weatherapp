@@ -43,9 +43,9 @@ export let weatherDefinitions = {
         3:  {
                 label:"Overcast",
                 picstr:"overcast",
-                picstr_night:"overcast",
+                picstr_night:"overcast_night",
                 piccredit:"Photo by Vladimir  Gladkov: https://www.pexels.com/photo/dramatic-overcast-sky-with-dark-clouds-33175900/",
-                piccredit_night:"Photo by Zachary DeBottis: https://www.pexels.com/photo/a-black-and-white-photo-of-a-dark-sky-27987357/",
+                piccredit_night:"Photo by Serena Koi: https://www.pexels.com/photo/a-full-moon-behind-the-dark-clouds-6337074/",
             },
 
         //🌫️ Fog

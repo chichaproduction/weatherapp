@@ -8,16 +8,21 @@ let currentLocation = null;
 
 //Main function
 async function main(geolocation){
-    currentLocation = geolocation;
-    if(!geolocation){
-        geolocation = await getLatLong();                                        //waits the Promise resolves or rejects
+    try {
+        currentLocation = geolocation;
+        if(!geolocation){
+            geolocation = await getLatLong();                                        //waits the Promise resolves or rejects
+        }
+
+        let weatherapidata = await getForecast(geolocation.latitude, geolocation.longitude); 
+        let locationapidata = await getLocationData(geolocation.latitude, geolocation.longitude); //waits the Promise resolves or rejects
+        let weatherdata = weatherDataBuilder(weatherapidata.current, weatherapidata.current_units);
+        let locationdata = locationDataBuilder(locationapidata);
+        uiSetter(weatherdata, locationdata);        
+    } catch (error) {
+        alert("Failed to fetch Data! \n Please reload or check your connection!");
     }
 
-    let weatherapidata = await getForecast(geolocation.latitude, geolocation.longitude); 
-    let locationapidata = await getLocationData(geolocation.latitude, geolocation.longitude); //waits the Promise resolves or rejects
-    let weatherdata = weatherDataBuilder(weatherapidata.current, weatherapidata.current_units);
-    let locationdata = locationDataBuilder(locationapidata);
-    uiSetter(weatherdata, locationdata);
 }
 
 //Get Latitude and Longitude from Browser/Client
@@ -33,7 +38,7 @@ function getLatLong(){
                 })
             },
             error => {                     
-                                                     //anon func. if error callback is called
+                                                    //anon func. if error callback is called
                 console.log("Location permission denied or unavailable.");
                 reject(error)                                                       //call error to reject promise
             }
@@ -68,33 +73,28 @@ async function getForecast(latitude, longitude){
         `&timezone=auto`;
     
     let res = await fetch(strrequest);
+    if (!res.ok) throw new Error("Request failed: " + res.status);
     let resdata = await res.json();
     return resdata;
 }
 
 //Request to the API BIG DATA CLOUD
 async function getLocationData(latitude, longitude){
-    
-    let strrequest = await `https://api-bdc.net/data/reverse-geocode?`+
-    `latitude=${latitude}&longitude=${longitude}`+
-    `&localityLanguage=en` + 
-    `&key=bdc_77e995e39bbf42b598d2f8f2b0510f79`;
-    
+    let strrequest = `https://location-proxy-worker.chichaproduction.workers.dev/?lat=${latitude}&lng=${longitude}`;
     let res = await fetch(strrequest);
+    if (!res.ok) throw new Error("Request failed: " + res.status);
     let resdata = await res.json();
     return resdata;
 }
 
 //Request Geo LOc based on text
-async function searchLocation(){
-    let searchtext = document.getElementById('search-input').value;
-
-    let strrequest = await `https://geocoding-api.open-meteo.com/v1/search?name=${searchtext}&count=10&language=en&format=json`;
-    
-    let res = await fetch(strrequest);
-    let resdata = await res.json();
-    return resdata.results;
-
+async function searchLocation(searchtext){
+        let strrequest = await `https://geocoding-api.open-meteo.com/v1/search?name=${searchtext}&count=10&language=en&format=json`;
+        
+        let res = await fetch(strrequest);
+        if (!res.ok) throw new Error("Request failed: " + res.status);
+        let resdata = await res.json();
+        return resdata.results;
 }
 
 function buildSuggestions(listResult){
@@ -146,11 +146,15 @@ function locationBuilder(locdata){
 }
 
 function selectLocation(){
-    let locIndex = this.id;
-    let locationData = locations[locIndex];
-
-    main({latitude:locationData.latitude, longitude:locationData.longitude});
-    closemodal();
+    try{
+        let locIndex = this.id;
+        let locationData = locations[locIndex];
+    
+        main({latitude:locationData.latitude, longitude:locationData.longitude});
+        closemodal();
+    }catch{
+        alert("Searching Location Failed! \n Please check your connection and reload.");
+    }
 }
 
 function clearmodalsuggestion(){
@@ -168,7 +172,6 @@ function closemodal(){
 
 function reloadmain(){
     main(currentLocation);
-    console.log("UPDATE SUCCESFUL");
 }
 
 //Initial
@@ -176,6 +179,33 @@ updateCurrentTime();
 setInterval(updateCurrentTime, 1000);
 main(false);
 setInterval(() => reloadmain(), 20 * 60 * 1000);// 20 minutes reload 
+
+let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        document.getElementById('install-btn').style.display = 'block';
+    });
+
+    document.getElementById('install-btn').addEventListener('click', async () => {
+        if (!deferredPrompt) {
+            alert('Already installed on this device, or this browser has no one-tap install. On iPhone, use Share → Add to Home Screen.');
+            return;
+        }
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        
+        if (outcome === 'accepted') {
+            alert('Installed! You can find it on your home screen.');   // or a nicer custom toast
+        }
+        
+        deferredPrompt = null;
+    });
+
+    window.addEventListener('appinstalled', () => {
+        document.getElementById('install-btn').style.display = 'none';
+    });
 
 //Modal functionality
 document.getElementById('search-location').addEventListener('click', () => {
@@ -198,19 +228,32 @@ document.getElementById('modal-close-about').addEventListener('click', () => {
 
 //Search Button
 document.getElementById('search-button').addEventListener('click', async () => {
-    let searchLocData = await searchLocation();
-    let locsuggestdiv = document.getElementById("loc-suggestion");
-    if(searchLocData){
-        if(searchLocData.length >= 1){
-            locations = searchLocData;
-            buildSuggestions(searchLocData);
-        }else{
-            locsuggestdiv.textContent = 'NO LOCATION FOUND!';
-            locsuggestdiv.style.color = "red";
-        }
+
+    let searchtext = document.getElementById('search-input').value;
+
+    if(searchtext == ""){
+        alert("Search Text is blank!");
     }else{
-        locsuggestdiv.textContent = 'NO LOCATION FOUND!';
-        locsuggestdiv.style.color = "red";
+        try {
+            let searchLocData = await searchLocation(searchtext);
+            let locsuggestdiv = document.getElementById("loc-suggestion");
+            if(searchLocData){
+                if(searchLocData.length >= 1){
+                    locations = searchLocData;
+                    buildSuggestions(searchLocData);
+                }else{
+                    locsuggestdiv.textContent = 'NO LOCATION FOUND!';
+                    locsuggestdiv.style.color = "red";
+                }
+            }else{
+                locsuggestdiv.textContent = 'NO LOCATION FOUND!';
+                locsuggestdiv.style.color = "red";
+            }     
+        } catch (error) {
+            alert("Search Failed");
+        }
+       
     }
+
 });
 

@@ -146,7 +146,7 @@
 /* TEXT POSITIONS */
 .text-center {text-align: center;}
 .text-left {text-align: left;}
-.text-left {text-align: right;}
+.text-right {text-align: right;}
 
 /* SVG */
 .info-main-icon {
@@ -187,6 +187,23 @@ transform: scale(1.3);
 
 /* Main SElection hover */
 .about-dev:hover {
+transform: scale(1.3);
+}
+
+/* SVG */
+.dl-site {
+        position: fixed;
+    bottom: 12px;
+    right: 40px;   /* or left: 12px, wherever you want it */
+    z-index: 10;
+    height:20px;
+    width: 20px;
+    transition: transform 0.2s ease;
+    filter: brightness(0) invert(1);
+}
+
+/* Main SElection hover */
+.dl-site:hover {
 transform: scale(1.3);
 }
 

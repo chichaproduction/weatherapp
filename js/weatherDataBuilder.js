@@ -14,7 +14,7 @@ export function weatherDataBuilder(data, data_units) {
             snowfall_str:               data.snowfall + " " + data_units.snowfall,
             surface_pressure_str:       data.surface_pressure + " " + data_units.surface_pressure,
             temperature_2m_str:         data.temperature_2m + " " + data_units.temperature_2m,
-            time: "2026-08-21T06:30",
+            time:                       data.time,
             weather_code_str:           data.weather_code + " " + data_units.weather_code,
             wind_direction_10m_str:     data.wind_direction_10m + " " + data_units.wind_direction_10m,
             wind_gusts_10m_str:         data.wind_gusts_10m + " " + data_units.wind_gusts_10m,
@@ -52,7 +52,7 @@ export function weatherDataBuilder(data, data_units) {
                 rain: data_temp.data_temp_str.rain_str, //just the rain (long rain)
                 showers: data_temp.data_temp_str.showers_str, //just the showers (short burst of rain)
                 snowfall: data_temp.data_temp_str.snowfall_str, //just the snowfall
-                type: getPrecipitationType(data_temp.data_temp_str.rain, data_temp.data_temp_str.showers ,data_temp.data_temp_str.snowfall)
+                type: getPrecipitationType(data_temp.data.rain, data_temp.data.showers ,data_temp.data.snowfall)
             },
             temperature:{
                 air_temperature: data_temp.data_temp_str.temperature_2m_str,              // What it really is
@@ -84,11 +84,11 @@ if (cover >= 0 && cover <= 24) {
     } else if (cover >= 25 && cover <= 49) {
         return "Mostly Clear";
     } else if (cover >= 50 && cover <= 74) {
-        return "Partly Clear";
+        return "Partly Cloudy";
     } else if (cover >= 75 && cover <= 99) {
-        return "Mostly Clear";
+        return "Mostly Cloudy";
     } else if (cover >= 100) {
-        return "Completely Clear";
+        return "Completely Cloudy";
     }
     
     return null;
